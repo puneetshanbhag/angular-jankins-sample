@@ -9,12 +9,17 @@ pipeline {
                  git branch: 'main', url: 'https://github.com/puneetshanbhag/angular-jankins-sample.git'
             }
         }
-        stage('Build') {
+        stage('Install') {
             steps {
                 sh "npm config set registry http://registry.npmjs.org/"
                 sh "npm config set proxy http://10.2.6.87:8080" 
                 sh "npm config set https-proxy http://10.2.6.87:8080" 
                 sh "npm install"
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "npm run build --prod"
             }
         }
         stage('Deploy') {
