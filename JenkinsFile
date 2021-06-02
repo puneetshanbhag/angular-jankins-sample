@@ -11,6 +11,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh "npm config set registry http://registry.npmjs.org/"
                 sh "npm config set proxy http://10.2.6.87:8080" 
                 sh "npm config set https-proxy http://10.2.6.87:8080" 
                 sh "npm install"
